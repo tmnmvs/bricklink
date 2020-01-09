@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     bricklink (0.0.1)
-      oauth
+      oauth (~> 0.5)
 
 GEM
   remote: https://rubygems.org/
@@ -32,10 +32,10 @@ PLATFORMS
 DEPENDENCIES
   bricklink!
   bundler (~> 2.0)
-  byebug
-  dotenv
-  rake
-  rspec
+  byebug (~> 11.0)
+  dotenv (~> 2.7)
+  rake (~> 13.0)
+  rspec (~> 3.9)
 
 BUNDLED WITH
    2.1.4

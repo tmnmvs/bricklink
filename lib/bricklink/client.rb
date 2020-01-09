@@ -12,15 +12,19 @@ module Bricklink
     end
 
     def get_price_guide item_number, options = {}
-      call_api "/items/SET/#{item_number}/price", options      
+      default_params = { 
+        'guide type' => 'stock',
+        'new_or_used' => 'N',
+        'country_code' => 'US',
+        'currency_code' => 'USD',
+        'region' => 'north_america'
+      }
+      call_api "/items/SET/#{item_number}/price", default_params.merge(options)
     end
 
     protected
 
     def call_api path, params = {}
-      consumer = OAuth::Consumer.new(consumer_key, consumer_secret, { site: BASE_URL })
-      access_token = OAuth::AccessToken.new(consumer, token, token_secret)
-
       response = access_token.get([path, URI.encode_www_form(params)].join("?"))
 
       if response.is_a? Net::HTTPOK
@@ -28,6 +32,11 @@ module Bricklink
       else
         raise response.body
       end
+    end
+
+    def access_token
+      consumer = OAuth::Consumer.new(consumer_key, consumer_secret, { site: BASE_URL })
+      access_token = OAuth::AccessToken.new(consumer, token, token_secret)
     end
   end
 end

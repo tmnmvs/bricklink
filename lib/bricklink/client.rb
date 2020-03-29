@@ -11,6 +11,10 @@ module Bricklink
       define_method(param) { ENV["BRICKLINK_#{param}".upcase] }
     end
 
+    def get_item item_number
+      call_api "/items/SET/#{item_number}"
+    end
+
     def get_price_guide item_number, options = {}
       default_params = { 
         'guide type' => 'stock',

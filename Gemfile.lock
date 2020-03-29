@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bricklink (0.0.1)
+    bricklink (0.1.1)
       oauth (~> 0.5)
 
 GEM
